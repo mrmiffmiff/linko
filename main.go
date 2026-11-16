@@ -40,6 +40,7 @@ func run(ctx context.Context, cancel context.CancelFunc, httpPort int, dataDir s
 	shutdownCtx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
+	fmt.Println("Linko is shutting down")
 	if err := s.shutdown(shutdownCtx); err != nil {
 		fmt.Fprintf(os.Stderr, "failed to shutdown server: %v\n", err)
 		return 1
@@ -48,5 +49,6 @@ func run(ctx context.Context, cancel context.CancelFunc, httpPort int, dataDir s
 		fmt.Fprintf(os.Stderr, "server error: %v\n", serverErr)
 		return 1
 	}
+
 	return 0
 }
